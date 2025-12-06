@@ -78,7 +78,7 @@ Follow the detailed instructions in `GOOGLE_SHEETS_SETUP.md`:
 5. Copy the Web App URL
 6. Create/Update `.env` file:
    ```
-   VITE_GOOGLE_APPS_SCRIPT_URL=your_web_app_url_here
+   VITE_GOOGLE_APPS_SCRIPT_URL_3=your_web_app_url_here
    ```
 7. Restart the dev server
 

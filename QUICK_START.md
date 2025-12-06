@@ -58,7 +58,7 @@ This section includes:
 1. Create a file named `.env` in the project root (same folder as `package.json`)
 2. Add this line (replace with your URL):
 ```
-VITE_GOOGLE_APPS_SCRIPT_URL=https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
+VITE_GOOGLE_APPS_SCRIPT_URL_3=https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
 ```
 3. Save the file
 4. **Restart the dev server** (Ctrl+C, then `npm run dev` again)

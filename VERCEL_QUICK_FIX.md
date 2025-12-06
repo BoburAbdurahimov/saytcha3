@@ -31,7 +31,7 @@ Your `.env` file works locally but Vercel doesn't use it. You need to add the en
 4. Click **Add**
 5. Enter:
    ```
-   Name:  VITE_GOOGLE_APPS_SCRIPT_URL
+   Name:  VITE_GOOGLE_APPS_SCRIPT_URL_3
    Value: https://script.google.com/macros/s/YOUR_ID/exec
    ```
 6. Check all three: ✅ Production ✅ Preview ✅ Development
@@ -73,7 +73,7 @@ Before testing, verify:
 - [ ] "Execute as" = **Me** (not "User accessing the app")
 - [ ] "Who has access" = **Anyone**
 - [ ] Web App URL ends with `/exec` (not `/edit`)
-- [ ] Vercel environment variable name is **exactly**: `VITE_GOOGLE_APPS_SCRIPT_URL`
+- [ ] Vercel environment variable name is **exactly**: `VITE_GOOGLE_APPS_SCRIPT_URL_3`
 - [ ] Environment variable is enabled for **Production**
 - [ ] You redeployed **after** adding the variable
 
@@ -105,7 +105,7 @@ Before testing, verify:
 ### Verify Environment Variable
 In Vercel:
 - Settings → Environment Variables
-- Confirm `VITE_GOOGLE_APPS_SCRIPT_URL` exists
+- Confirm `VITE_GOOGLE_APPS_SCRIPT_URL_3` exists
 - Click the variable to see the value
 - Make sure it starts with `https://script.google.com/macros/s/`
 

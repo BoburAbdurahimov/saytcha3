@@ -1,7 +1,7 @@
 # 🔴 ERROR: "Google Apps Script URL not configured"
 
 ## What This Error Means
-Vercel **CANNOT** find the `VITE_GOOGLE_APPS_SCRIPT_URL` environment variable. This means it's NOT set in Vercel's dashboard, or you haven't redeployed yet.
+Vercel **CANNOT** find the `VITE_GOOGLE_APPS_SCRIPT_URL_3` environment variable. This means it's NOT set in Vercel's dashboard, or you haven't redeployed yet.
 
 ---
 
@@ -53,7 +53,7 @@ Do you have the Google Apps Script deployed?
 2. Click on your **project** (hayotyuli or whatever you named it)
 3. Click the **Settings** tab at the top
 4. In the LEFT sidebar, click **Environment Variables**
-5. Look for `VITE_GOOGLE_APPS_SCRIPT_URL`
+5. Look for `VITE_GOOGLE_APPS_SCRIPT_URL_3`
 
 **Is it there?**
 
@@ -61,7 +61,7 @@ Do you have the Google Apps Script deployed?
 1. Click **Add New** or **Add** button
 2. Enter **EXACTLY** this:
    ```
-   Name: VITE_GOOGLE_APPS_SCRIPT_URL
+   Name: VITE_GOOGLE_APPS_SCRIPT_URL_3
    ```
 3. In the Value field, paste your Web App URL (from Step 1)
 4. Under "Environment", check ALL THREE boxes:
@@ -143,7 +143,7 @@ Before testing, verify each of these:
 - [ ] You can access the URL in a browser (might show "Method Not Allowed" - that's OK)
 
 ### ✅ Vercel Environment Variable
-- [ ] Variable name is **EXACTLY**: `VITE_GOOGLE_APPS_SCRIPT_URL` (case-sensitive!)
+- [ ] Variable name is **EXACTLY**: `VITE_GOOGLE_APPS_SCRIPT_URL_3` (case-sensitive!)
 - [ ] Variable value is the full Web App URL from Apps Script
 - [ ] Variable is enabled for **Production** environment
 - [ ] Variable was entered in **Vercel Dashboard** (not just local .env)
@@ -167,7 +167,7 @@ Before testing, verify each of these:
 **Solutions**:
 1. Hard refresh your browser (Ctrl + Shift + R)
 2. Clear browser cache
-3. Verify the variable name is EXACTLY `VITE_GOOGLE_APPS_SCRIPT_URL` (check for typos)
+3. Verify the variable name is EXACTLY `VITE_GOOGLE_APPS_SCRIPT_URL_3` (check for typos)
 4. Make sure "Production" environment is checked
 
 ### Issue 4: "Where do I find my Vercel project?"

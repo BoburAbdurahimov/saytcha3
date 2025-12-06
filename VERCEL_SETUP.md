@@ -33,7 +33,7 @@ When you deploy to Vercel, your local `.env` file is **NOT** uploaded (it's in `
 3. Click the **Settings** tab
 4. In the left sidebar, click **Environment Variables**
 5. Add a new variable:
-   - **Name**: `VITE_GOOGLE_APPS_SCRIPT_URL`
+   - **Name**: `VITE_GOOGLE_APPS_SCRIPT_URL_3`
    - **Value**: Paste the Web App URL you copied (e.g., `https://script.google.com/macros/s/AKfycby.../exec`)
    - **Environment**: Check all three boxes:
      - ✅ Production
@@ -44,7 +44,7 @@ When you deploy to Vercel, your local `.env` file is **NOT** uploaded (it's in `
 #### Option B: Via Vercel CLI
 
 ```bash
-vercel env add VITE_GOOGLE_APPS_SCRIPT_URL
+vercel env add VITE_GOOGLE_APPS_SCRIPT_URL_3
 ```
 Then paste your Google Apps Script URL when prompted.
 
@@ -86,7 +86,7 @@ vercel --prod
 
 In your Vercel dashboard:
 - Go to **Settings** → **Environment Variables**
-- Verify `VITE_GOOGLE_APPS_SCRIPT_URL` exists and has the correct URL
+- Verify `VITE_GOOGLE_APPS_SCRIPT_URL_3` exists and has the correct URL
 - Make sure it's enabled for **Production**
 
 #### 2. Check the browser console
@@ -134,7 +134,7 @@ You should see a Google page (might show "Method Not Allowed" - that's OK, means
 - [ ] "Execute as" is set to "Me"
 - [ ] "Who has access" is set to "Anyone"
 - [ ] Web App URL is copied correctly
-- [ ] Environment variable `VITE_GOOGLE_APPS_SCRIPT_URL` is added in Vercel
+- [ ] Environment variable `VITE_GOOGLE_APPS_SCRIPT_URL_3` is added in Vercel
 - [ ] Environment variable is enabled for Production
 - [ ] Application has been redeployed after adding the variable
 - [ ] Browser console shows no errors when submitting form
@@ -152,7 +152,7 @@ You should see a Google page (might show "Method Not Allowed" - that's OK, means
 - You **must redeploy** after adding/changing them
 
 ### ❌ Mistake 3: Wrong environment variable name
-- **Must be**: `VITE_GOOGLE_APPS_SCRIPT_URL` (exact spelling, including `VITE_`)
+- **Must be**: `VITE_GOOGLE_APPS_SCRIPT_URL_3` (exact spelling, including `VITE_`)
 - Vite requires the `VITE_` prefix to expose variables to client code
 
 ### ❌ Mistake 4: Apps Script not authorized
@@ -176,7 +176,7 @@ To test with the same setup as Vercel locally:
 
 1. Make sure your `.env` file has:
    ```
-   VITE_GOOGLE_APPS_SCRIPT_URL=https://script.google.com/macros/s/.../exec
+   VITE_GOOGLE_APPS_SCRIPT_URL_3=https://script.google.com/macros/s/.../exec
    ```
 
 2. Restart your dev server:

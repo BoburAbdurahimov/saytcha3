@@ -6,10 +6,10 @@
  * @returns {Promise<Object>} Response from Google Sheets
  */
 export async function submitToGoogleSheets(data) {
-    const url = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL;
+    const url = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL_3;
 
     if (!url || url === 'your_google_apps_script_url_here') {
-        throw new Error('Google Apps Script URL not configured. Please set VITE_GOOGLE_APPS_SCRIPT_URL in .env file');
+        throw new Error('Google Apps Script URL not configured. Please set VITE_GOOGLE_APPS_SCRIPT_URL_3 in .env file');
     }
 
     try {

@@ -51,7 +51,7 @@ This guide will help you set up the Google Sheets integration to automatically s
 1. Open the `.env` file in your project root (or create it if it doesn't exist)
 2. Add or update the following line:
    ```
-   VITE_GOOGLE_APPS_SCRIPT_URL=your_copied_url_here
+   VITE_GOOGLE_APPS_SCRIPT_URL_3=your_copied_url_here
    ```
    Replace `your_copied_url_here` with the URL you copied in step 4
 
