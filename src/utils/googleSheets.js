@@ -62,6 +62,20 @@ export function calculateScore(testSession) {
  * @param {Object} testSession - Test session with answers
  * @returns {Object} Formatted data object
  */
+/**
+ * Helper to remove + sign from phone numbers starting with 998
+ * @param {string} phone 
+ * @returns {string}
+ */
+const cleanPhone = (phone) => {
+    if (!phone) return '';
+    const strPhone = String(phone);
+    if (strPhone.startsWith('+998')) {
+        return strPhone.substring(1);
+    }
+    return strPhone;
+};
+
 export function formatQuizData(formData, selectedSubjects, testSession) {
     const scoreData = calculateScore(testSession);
 
@@ -69,16 +83,16 @@ export function formatQuizData(formData, selectedSubjects, testSession) {
         // Personal information
         first_name: formData.first_name,
         last_name: formData.last_name,
-        phone: formData.phone,
+        phone: cleanPhone(formData.phone),
         region: formData.region,
         district: formData.district,
         school_number: formData.school_number,
 
         // Parent information
         father_name: formData.father_name,
-        father_phone: formData.father_phone,
+        father_phone: cleanPhone(formData.father_phone),
         mother_name: formData.mother_name,
-        mother_phone: formData.mother_phone,
+        mother_phone: cleanPhone(formData.mother_phone),
 
         // Registration questions
         q1: formData.q1,

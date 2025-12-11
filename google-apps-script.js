@@ -61,19 +61,29 @@ function doPost(e) {
         // Parse the data
         const data = JSON.parse(e.postData.contents);
 
+        // Helper to format phone number
+        const formatPhoneNumberForSheet = (phone) => {
+            if (!phone) return '';
+            const strPhone = String(phone);
+            if (strPhone.startsWith('+998')) {
+                return strPhone.substring(1);
+            }
+            return strPhone;
+        };
+
         // Prepare row data
         const rowData = [
             data.timestamp || new Date().toISOString(),
             data.first_name || '',
             data.last_name || '',
-            data.phone || '',
+            formatPhoneNumberForSheet(data.phone),
             data.region || '',
             data.district || '',
             data.school_number || '',
             data.father_name || '',
-            data.father_phone || '',
+            formatPhoneNumberForSheet(data.father_phone),
             data.mother_name || '',
-            data.mother_phone || '',
+            formatPhoneNumberForSheet(data.mother_phone),
             data.q1 || '',
             data.q2 || '',
             data.q3 || '',
