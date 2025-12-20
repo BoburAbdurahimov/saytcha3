@@ -151,7 +151,12 @@ const useStore = create((set, get) => ({
   // Validate registration
   completeRegistration: () => {
     const { formData } = get();
-    const requiredFields = ['first_name', 'last_name', 'region', 'school_number', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6'];
+    const requiredFields = [
+      'first_name', 'last_name', 'father_name', 'mother_name',
+      'phone', 'father_phone', 'mother_phone',
+      'region', 'district', 'school_number',
+      'q1', 'q2', 'q3', 'q4', 'q5', 'q6'
+    ];
 
     for (const field of requiredFields) {
       if (!formData[field]?.trim()) {

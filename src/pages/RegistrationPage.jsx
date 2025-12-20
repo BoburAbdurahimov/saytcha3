@@ -14,7 +14,7 @@ const RegistrationPage = () => {
 
   // Validation functions
   const validateName = (value) => {
-    if (!value.trim()) return language === 'uz' ? 'Bu maydon to\'ldirilishi shart' : 'Это поле обязательно';
+    if (!value?.trim()) return language === 'uz' ? 'Bu maydon to\'ldirilishi shart' : 'Это поле обязательно';
     if (value.length < 2) return language === 'uz' ? 'Kamida 2 ta harf bo\'lishi kerak' : 'Минимум 2 буквы';
     if (!/^[a-zA-Zа-яА-ЯёЁўЎқҚғҒҳҲ\s'-]+$/.test(value)) {
       return language === 'uz' ? 'Faqat harflar kiritilishi mumkin' : 'Только буквы';
@@ -22,9 +22,9 @@ const RegistrationPage = () => {
     return '';
   };
 
-  const validatePhone = (value, required = false) => {
+  const validatePhone = (value, required = true) => {
     if (!required && !value) return '';
-    if (!value.trim()) return language === 'uz' ? 'Bu maydon to\'ldirilishi shart' : 'Это поле обязательно';
+    if (!value?.trim()) return language === 'uz' ? 'Bu maydon to\'ldirilishi shart' : 'Это поле обязательно';
 
     // Remove all non-digits
     const cleaned = value.replace(/\D/g, '');
@@ -39,19 +39,19 @@ const RegistrationPage = () => {
   };
 
   const validateRegion = (value) => {
-    if (!value.trim()) return language === 'uz' ? 'Bu maydon to\'ldirilishi shart' : 'Это поле обязательно';
+    if (!value?.trim()) return language === 'uz' ? 'Bu maydon to\'ldirilishi shart' : 'Это поле обязательно';
     if (value.length < 3) return language === 'uz' ? 'Kamida 3 ta harf bo\'lishi kerak' : 'Минимум 3 буквы';
     return '';
   };
 
   const validateSchoolNumber = (value) => {
-    if (!value.trim()) return language === 'uz' ? 'Bu maydon to\'ldirilishi shart' : 'Это поле обязательно';
+    if (!value?.trim()) return language === 'uz' ? 'Bu maydon to\'ldirilishi shart' : 'Это поле обязательно';
     if (value.length < 1) return language === 'uz' ? 'Maktab raqamini kiriting' : 'Введите номер школы';
     return '';
   };
 
   const validateQuestion = (value, questionNum) => {
-    if (!value.trim()) return language === 'uz' ? 'Bu savolga javob bering' : 'Ответьте на этот вопрос';
+    if (!value?.trim()) return language === 'uz' ? 'Bu savolga javob bering' : 'Ответьте на этот вопрос';
     if (value.length < 3) {
       return language === 'uz'
         ? 'Kamida 3 ta belgi bo\'lishi kerak'
@@ -88,17 +88,17 @@ const RegistrationPage = () => {
         error = validateName(value);
         break;
       case 'phone':
-        error = validatePhone(value, false); // Phone is optional
+        error = validatePhone(value, true);
         break;
       case 'father_phone':
       case 'mother_phone':
-        error = validatePhone(value, false); // Parent phones are optional
+        error = validatePhone(value, true);
         break;
       case 'region':
         error = validateRegion(value);
         break;
       case 'district':
-        // District is optional
+        error = validateRegion(value); // Reuse region validation for district
         break;
       case 'school_number':
         error = validateSchoolNumber(value);
@@ -162,7 +162,9 @@ const RegistrationPage = () => {
   const validateAllFields = () => {
     const newErrors = {};
     const requiredFields = [
-      'first_name', 'last_name', 'region', 'school_number',
+      'first_name', 'last_name', 'father_name', 'mother_name',
+      'phone', 'father_phone', 'mother_phone',
+      'region', 'district', 'school_number',
       'q1', 'q2', 'q3', 'q4', 'q5', 'q6'
     ];
 
@@ -254,7 +256,9 @@ const RegistrationPage = () => {
               </div>
 
               <div>
-                <label className="block font-medium text-gray-700 mb-2">{t.phone}</label>
+                <label className="block font-medium text-gray-700 mb-2">
+                  {t.phone} <span className="text-red-500">{t.required}</span>
+                </label>
                 <input
                   type="tel"
                   placeholder={t.phonePlaceholder}
@@ -288,14 +292,21 @@ const RegistrationPage = () => {
               </div>
 
               <div>
-                <label className="block font-medium text-gray-700 mb-2">{t.district}</label>
+                <label className="block font-medium text-gray-700 mb-2">
+                  {t.district} <span className="text-red-500">{t.required}</span>
+                </label>
                 <input
                   type="text"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${getError('district') ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                    }`}
                   value={formData.district}
                   onChange={(e) => handleChange('district', e.target.value)}
+                  onBlur={() => handleBlur('district')}
                   placeholder={language === 'uz' ? 'Tumaningizni kiriting' : 'Введите ваш район'}
                 />
+                {getError('district') && (
+                  <p className="mt-1 text-sm text-red-600">{getError('district')}</p>
+                )}
               </div>
 
               <div>
@@ -324,7 +335,9 @@ const RegistrationPage = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block font-medium text-gray-700 mb-2">{t.fatherName}</label>
+                <label className="block font-medium text-gray-700 mb-2">
+                  {t.fatherName} <span className="text-red-500">{t.required}</span>
+                </label>
                 <input
                   type="text"
                   className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${getError('father_name') ? 'border-red-300 bg-red-50' : 'border-gray-300'
@@ -340,7 +353,9 @@ const RegistrationPage = () => {
               </div>
 
               <div>
-                <label className="block font-medium text-gray-700 mb-2">{t.fatherPhone}</label>
+                <label className="block font-medium text-gray-700 mb-2">
+                  {t.fatherPhone} <span className="text-red-500">{t.required}</span>
+                </label>
                 <input
                   type="tel"
                   placeholder={t.phonePlaceholder}
@@ -356,7 +371,9 @@ const RegistrationPage = () => {
               </div>
 
               <div>
-                <label className="block font-medium text-gray-700 mb-2">{t.motherName}</label>
+                <label className="block font-medium text-gray-700 mb-2">
+                  {t.motherName} <span className="text-red-500">{t.required}</span>
+                </label>
                 <input
                   type="text"
                   className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${getError('mother_name') ? 'border-red-300 bg-red-50' : 'border-gray-300'
@@ -372,7 +389,9 @@ const RegistrationPage = () => {
               </div>
 
               <div>
-                <label className="block font-medium text-gray-700 mb-2">{t.motherPhone}</label>
+                <label className="block font-medium text-gray-700 mb-2">
+                  {t.motherPhone} <span className="text-red-500">{t.required}</span>
+                </label>
                 <input
                   type="tel"
                   placeholder={t.phonePlaceholder}
